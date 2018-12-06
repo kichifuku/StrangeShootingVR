@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class ZPosPointer : MonoBehaviour {
 
-    //int sampleTargetCount;
-
     public GameObject[] zombiePrefabs;
-
-    //public GameObject zombiePrefab;
 
     public bool start = false;
 

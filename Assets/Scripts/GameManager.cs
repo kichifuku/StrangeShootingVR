@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour {
 
     public GameObject[] zombiePrefabs;
 
+    private string key = "bestScore";
+
     
     private void Awake()
     {
@@ -60,16 +62,13 @@ public class GameManager : MonoBehaviour {
 
         // 72Hzモード（フレームレートは上がるが綺麗）
         OVRManager.display.displayFrequency = 72.0f;
+
     }
-    
 
-
-    void Start()
+    private void Start()
     {
-        //whistle = GetComponent<AudioSource>();
+        bestScore = PlayerPrefs.GetInt(key, 0);
     }
-
-
 
     void Update()
     {
@@ -94,7 +93,6 @@ public class GameManager : MonoBehaviour {
             secondTimeLimit -= Time.deltaTime;
         }else if (once2)
         {
-            //whistle.Play();
             finshSound2.Play();
             secondGameFinish();
             once2 = false;
@@ -144,6 +142,7 @@ public class GameManager : MonoBehaviour {
         if (totalPoint > bestScore)
         {
             bestScore = totalPoint;
+            PlayerPrefs.SetInt(key, bestScore);
         }
 
         GameObject rePre = Instantiate(restartBillboard, new Vector3(0, -0.5f, 6), Quaternion.Euler(0, 0, 90));
@@ -205,7 +204,6 @@ public class GameManager : MonoBehaviour {
         Invoke("Reposit", 4f);
 
         dust.SetActive(false);
-        //Invoke("makeRep",11f);
 
     }
 
@@ -217,13 +215,7 @@ public class GameManager : MonoBehaviour {
 
     void GenerateZombies()
     {
-        /*
-        foreach (GameObject zp in zPosPointers)
-        {
-            GameObject zP = Instantiate(zombiePrefab, zp.transform.position, Quaternion.identity);
-            zP.transform.parent = zombies.transform;
-        }
-        */
+        
 
         for(int i= 0; i< zPosPointers.Length; i++)
         {

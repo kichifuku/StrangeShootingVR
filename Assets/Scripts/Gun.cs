@@ -45,7 +45,6 @@ public class Gun : MonoBehaviour {
         shotSound.Play();
         var bulletInstance = GameObject.Instantiate(bulletPrefab, pointer.position, pointer.rotation) as GameObject;
         bulletInstance.GetComponent<Rigidbody>().AddForce(bulletInstance.transform.forward * bulletPower);
-        //Destroy(bulletInstance, 5f);
     }
 
 

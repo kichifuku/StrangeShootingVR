@@ -27,7 +27,6 @@ public class ZombieController : MonoBehaviour {
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         sc = StartCoroutine(CheckDist());
-        //audioSource = GetComponent<AudioSource>();
 
         player = GameObject.FindWithTag("Player").transform;
 
